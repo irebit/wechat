@@ -21,10 +21,10 @@
          * 设置微信相关的配置常量
          */
         const AUTH_URL = 'https://open.weixin.qq.com/connect/oauth2/authorize';
-        const AUTH_TOKEN_URL =   'https://api.weixin.qq.com/sns/oauth2/access_token';
-        const AUTH_REFRESH_URL = 'https://api.weixin.qq.com/sns/oauth2/refresh_token';
-        const AUTH_USERINFO_URL = 'https://api.weixin.qq.com/sns/userinfo';
-        const AUTH_CHECKTOKEN_URL = 'https://api.weixin.qq.com/sns/auth';
+        const AUTH_GET_TOKEN =   'https://api.weixin.qq.com/sns/oauth2/access_token';
+        const AUTH_REFRESH_TOKEN = 'https://api.weixin.qq.com/sns/oauth2/refresh_token';
+        const AUTH_API_USER = 'https://api.weixin.qq.com/sns/userinfo';
+        const AUTH_API_CHECKTOKEN = 'https://api.weixin.qq.com/sns/auth';
         
 
     }

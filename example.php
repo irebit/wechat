@@ -27,7 +27,8 @@
     $alias = new Irebit\Wechat\Alias();
     $alias->register();
 
-    $Auth = new WechatAuth($appId, $appSecret);
+    $auth = new WechatAuth($appId, $appSecret);
+	$auth->authorize();
 
     // echo Configs::AUTH_BASE_URI;
 

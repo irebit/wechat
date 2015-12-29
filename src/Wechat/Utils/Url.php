@@ -13,7 +13,7 @@
      * @link      
      */
 
-    namespace Irebit\Wechat;
+    namespace Irebit\Wechat\Utils;
 
     class Url
     {

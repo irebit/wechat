@@ -13,22 +13,21 @@
      * @link      
      */
 
-    // use Irebit\Wechat\Alias;
-    
-    require_once(__DIR__ . DIRECTORY_SEPARATOR . "autoload.php");
+    require_once(dirname(__DIR__) . DIRECTORY_SEPARATOR . "autoload.php");
 
 
     $appId = 'wxd05f23b6b6dd3ae1';
     $appSecret = 'aa710dc555e8944ae99220c51226b7e2';
 
-    // $server = new \Irebit\Wechat\Server($appId, $appSecret);
-    // $server->Auth();
-
     $alias = new Irebit\Wechat\Alias();
     $alias->register();
 
+	$to = UtilsUrl::current();
+
+	$arr = UtilsArr::add(array(), 1, 2);
+	var_dump($arr);exit;
     $auth = new WechatAuth($appId, $appSecret);
-	$user = $auth->authorize();
+	$user = $auth->authorize($to, 'snsapi_base');
 	echo "<pre>";
 	var_dump($user);exit;
 

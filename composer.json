@@ -1,9 +1,9 @@
 {
     "name": "irebit/wechat",
+    "minimum-stability": "dev",
     "description": "wechat 公众号 SDK",
     "license": "MIT",
     "keywords": ["wechat"],
-    "version": "0.0.1",
     "authors": [
         {
             "name": "irebit",

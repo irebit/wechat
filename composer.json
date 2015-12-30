@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Irebit\\Wechat": "src/Wechat"
+            "Irebit\\Wechat\\": "src/Wechat"
         }
     }
 }

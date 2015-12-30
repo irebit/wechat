@@ -28,7 +28,9 @@
     $alias->register();
 
     $auth = new WechatAuth($appId, $appSecret);
-	$auth->authorize();
+	$user = $auth->authorize();
+	echo "<pre>";
+	var_dump($user);exit;
 
     // echo Configs::AUTH_BASE_URI;
 

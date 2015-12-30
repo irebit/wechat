@@ -64,6 +64,7 @@
             $this->appId = $appId;
             $this->appSecret = $appSecret;
 			$this->input = new Input();
+			$this->http = new Http();
         }
 
 		/**
@@ -72,7 +73,7 @@
 		 */
 		public function authorize($to = null, $scope = 'snsapi_userinfo', $state = 'STATE')
 		{
-			if (!$this->input->get['state'] && !$this->input->get['code']) {
+			if (!$this->input->get('state') && !$this->input->get('code')) {
 				$this->redirect($to, $scope, $state);
 			}
 			return $this->user();
@@ -111,23 +112,20 @@
 				'scope'         => $scope,
 				'state'         => $state,
 			);
-			return self::API_URL.'?'.http_build_query($params).'#wechat_redirect';
+			return Configs::AUTH_URL.'?'.http_build_query($params).'#wechat_redirect';
 		}
 
 		/**
 		 * 获取已授权用户
 		 *
-		 * @return \Overtrue\Wechat\Utils\Bag | null
+		 * @return 
 		 */
 		public function user()
 		{
-			if (!$this->input->get('state')
-				|| (!$code = $this->input->get('code')) && $this->input->get('state')) {
-				return $this->authorizedUser;
-			}
+			$code = $this->input->get('code');
 			$permission = $this->getAccessPermission($code);
 			if ($permission['scope'] !== 'snsapi_userinfo') {
-				$user = new Bag(array('openid' => $permission['openid']));
+				$user = array('openid' => $permission['openid']);
 			} else {
 				$user = $this->getUser($permission['openid'], $permission['access_token']);
 			}
@@ -139,7 +137,7 @@
 		 *
 		 * @param string $code
 		 *
-		 * @return string
+		 * @return array
 		 */
 		public function getAccessPermission($code)
 		{
@@ -149,7 +147,8 @@
 				'code'       => $code,
 				'grant_type' => 'authorization_code',
 			);
-			return $this->lastPermission = $_GET(self::API_TOKEN_GET, $params);
+			$http_info = $this->http->get(Configs::AUTH_GET_TOKEN, $params);
+			return json_decode($http_info['data'], true);
 		}
 
 		/**
@@ -167,8 +166,9 @@
 				'openid'       => $openId,
 				'lang'         => 'zh_CN',
 			);
-			$url = self::API_USER.'?'.http_build_query($queries);
-			//return new Bag($this->http->get($url));
+			$url = Configs::AUTH_API_USER.'?'.http_build_query($queries);
+			$http_info = $this->http->get($url);
+			return json_decode($http_info['data'], true);
 		}
 
 

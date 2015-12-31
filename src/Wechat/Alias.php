@@ -22,7 +22,9 @@
          * @var array()
          */
         protected static $aliases = array(
-                'WechatAuth' => 'Irebit\\Wechat\\Auth'
+                'WechatAuth' => 'Irebit\\Wechat\\Auth',
+                'UtilsUrl' => 'Irebit\\Wechat\\Utils\\Url',
+                'UtilsArr' => 'Irebit\\Wechat\\Utils\\Arr'
             );
 
         /**
